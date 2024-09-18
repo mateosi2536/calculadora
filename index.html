@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Calculadora</h1>
+        <input type="text"  class="in" oninput="testInput(this)">
+    </header>
+    <div class="teclado">
+        <button name="btClear" onclick="clear()">Clear</button>
+        <button name="btDelete" onclick="del()">←</button>
+        <button name="btPoint" onclick="bt('.')">.</button>
+        <button name="btEnter" onclick="validarEnter()">=</button>
+        <button name="bt1" onclick="bt(1)">1</button>
+        <button name="bt2" onclick="bt(2)">2</button>
+        <button name="bt3" onclick="bt(3)">3</button>
+        <button name="btDivision" onclick="bt('/')">/</button>
+        <button name="bt4" onclick="bt(4)">4</button>
+        <button name="bt5" onclick="bt(5)">5</button>
+        <button name="bt6" onclick="bt(6)">6</button>
+        <button name="btTimes" onclick="bt('*')">*</button>
+        <button name="bt7" onclick="bt(7)">7</button>
+        <button name="bt8" onclick="bt(8)">8</button>
+        <button name="bt9" onclick="bt(9)">9</button>
+        <button name="btMinus" onclick="bt('-')">-</button>
+        <button name="btPowe" onclick="bt('^')">^</button>
+        <button name="bt0" onclick="bt('0')">0</button>
+        <button name="btRoot" onclick="bt('r')">√</button>
+        <button name="btPlus" onclick="bt('+')">+</button>
+    </div>
+    <footer>
+        <p>este es el footer</p>
+        <a href="https://www.youtube.com">yuoutube</a>
+    </footer>
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>
