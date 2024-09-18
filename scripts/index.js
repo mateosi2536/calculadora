@@ -3,6 +3,7 @@ let num1 = null;
 let num2 = null;
 let sig1 = null;
 let state = false; // true si el ultimo dijito es un signo, false si es un numero
+let point = false; // solo se puede poner un punto
 
 function guardarNum1(num){
     num1 = parseFloat(num);
@@ -16,6 +17,11 @@ function guardarSig1(sig){
     sig1 = sig;
 }
 
+function limpiarTodo(){
+    limpiarVar();
+    input.value = '';
+}
+
 function limpiarVar(){
     num1 = null;
     num2 = null;
@@ -25,13 +31,31 @@ function limpiarVar(){
 
 function limpiarInput(){
     let j = input.value[input.value.length - 1];
-    clear();
+    input.value = '';
     input.value = j;
+}
+
+function del(){
+    input.value = input.value.slice(0, -1);
+}
+
+function tieneMasDeUnPunto(cadena) {
+    let contador = 0;
+    for (let i = 0; i < cadena.length; i++) {
+      if (cadena[i] === '.') {
+        contador++;
+      }
+    }
+    return contador > 1;
 }
 
 function testInput(){
     const regex = /[^0-9.]/g;
-    const regexPlus = /[^+\-*/()r^]/g;
+    const regexPlus = /[^+\-*/()√^]/g;
+    
+    if (tieneMasDeUnPunto(input.value)){ // se asegura que solo pueda haber un punto
+        del();
+    }
 
     let i = input.value[input.value.length - 1];
     input.value = input.value.replace(regex, '');
@@ -43,9 +67,6 @@ function testInput(){
         }
         else if (sig1 == null && num1 != null){ // num1 tiene data y sig1 no, es decir despues de un "enter"
             guardarSig1(i);
-        }
-        else if (sig1 != null && num1 == null){ // num1 no tiene data y sig1 si, no deberia existir este caso
-
         }
         else{   // no hay nada de data
             if (input.value.length > 0){ // me aseguro de que haya datos en el input para continuar
@@ -75,12 +96,11 @@ function validarEnter(){
         guardarNum2(input.value);
         enter(sig1);
     }
-    else return;
 }
 
 function bt(caracter) {
     input.value = input.value + caracter;
-    testInput()
+    testInput();
 }
 
 function enter(operation){
@@ -105,27 +125,19 @@ function enter(operation){
         case '^':
             resultado = Math.pow(num1, num2);
             break;
-        case 'r':
-            if (num2 != 0) {98
+        case '√':
+            if (num2 != 0) {
                 resultado = Math.pow(num2, (1 / num1));
             }   else {
                 resultado = 'Error: Índice de raíz no puede ser cero';
             }
+            break;
         default:
           resultado = input.value[input.value.length - 1];
-          resultado = operation;
           break;
         }
     input.value = resultado;
     sig1 = null;
     num1 = resultado;
     num2 = null;
-}
-
-function del(){
-    input.value = null;
-}
-
-function clear(){
-    input.value = null;
 }
